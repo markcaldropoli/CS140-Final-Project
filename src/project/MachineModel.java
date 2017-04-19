@@ -237,7 +237,7 @@ public class MachineModel {
 		memory.setData(index, value);
 	}
 	
-	public Instruction getInstruction(int instrNum) {
+	public Instruction getInstr(int instrNum) {
 		return IMAP.get(instrNum);
 	}
 }
