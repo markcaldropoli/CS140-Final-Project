@@ -11,6 +11,24 @@ public class MachineModel {
 	public MachineModel(HaltCallback callback) {
 		this.callback = callback;
 		
+		//INSTRUCTION MAP entry for "NOP"
+		IMAP.put(0x0, (arg, level) -> {
+			cpu.incrPC();
+		});
+		
+		//INSTRUCTION MAP entry for "LOD"
+		IMAP.put(0x1, (arg, level) -> {
+			if(level < 0 || level > 2) {
+				throw new IllegalArgumentException("Illegal indirection level in LOD instruction");
+			}
+			if(level > 0) {
+				IMAP.get(0x1).execute(memory.getData(cpu.getMemBase()+arg), level-1);
+			} else {
+				cpu.setAccum(arg);
+				cpu.incrPC();
+			}
+		});
+		
 		//INSTRUCTION MAP entry for "ADD"
 		IMAP.put(0x3, (arg, level) -> {
 			if(level < 0 || level > 2) {
