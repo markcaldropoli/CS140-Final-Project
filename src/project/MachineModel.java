@@ -90,7 +90,7 @@ public class MachineModel {
 				IMAP.get(0x6).execute(memory.getData(cpu.getMemBase()+arg), level-1);
 			} else {
 				if(arg == 0) {
-					throw new DivideByZeroException();
+					throw new DivideByZeroException("Cannot divide by zero in DIV instruction");
 				}
 				cpu.setAccum(cpu.getAccum() / arg);
 				cpu.incrPC();
@@ -141,6 +141,56 @@ public class MachineModel {
 			}
 		});
 		
+		//INSTRUCTION MAP entry for "CMPZ"
+		IMAP.put(0xA, (arg, level) -> {
+			if(level < 1 || level > 2) {
+				throw new IllegalArgumentException("Illegal indirection level in CMPZ instruction");
+			}
+			if(level > 1) {
+				IMAP.get(0xA).execute(memory.getData(cpu.getMemBase()+arg), level-1);
+			} else {
+				if(memory.getData(arg) == 0) {
+					cpu.setAccum(1);
+				} else {
+					cpu.setAccum(0);
+				}
+				cpu.incrPC();
+			}
+		});
+		
+		//INSTRUCTION MAP entry for "JUMP"
+		IMAP.put(0xB, (arg, level) -> {
+			if(level < 0 || level > 3) {
+				throw new IllegalArgumentException("Illegal indirection level in JUMP instruction");
+			}
+			if(level > 0 && level < 3) {
+				IMAP.get(0xB).execute(memory.getData(cpu.getMemBase()+arg), level-1);
+			} else if(level == 3) {
+				//TODO arg + starting value of pCounter
+			} else {
+				cpu.setPCounter(cpu.getPCounter()+arg);
+			}
+		});
+		
+		//INSTRUCTION MAP entry for "JMPZ"
+		IMAP.put(0xC, (arg, level) -> {
+			if(level < 0 || level > 3) {
+				throw new IllegalArgumentException("Illegal indirection level in JMPZ instruction");
+			}
+			if(cpu.getAccum() == 0) {
+				if(level > 0 && level < 3) {
+					IMAP.get(0xB).execute(memory.getData(cpu.getMemBase()+arg), level-1);
+				} else if(level == 3) {
+					//TODO arg + starting value of pCounter
+				} else {
+					cpu.setPCounter(cpu.getPCounter()+arg);
+				}
+			} else {
+				cpu.incrPC();
+			}
+			
+		});
+		
 		//INSTRUCTION MAP entry for "HALT"
 		IMAP.put(0xF, (arg, level) -> {
 			callback.halt();
@@ -149,5 +199,45 @@ public class MachineModel {
 	
 	public MachineModel() {
 		this(() -> System.exit(0));
+	}
+
+	public int getAccum() {
+		return cpu.getAccum();
+	}
+
+	public int getPCounter() {
+		return cpu.getPCounter();
+	}
+
+	public int getMemBase() {
+		return cpu.getMemBase();
+	}
+
+	public void setAccum(int ac) {
+		cpu.setAccum(ac);
+	}
+
+	public void setPCounter(int pc) {
+		cpu.setPCounter(pc);
+	}
+
+	public void setMemBase(int mb) {
+		cpu.setMemBase(mb);
+	}
+
+	public int[] getData() {
+		return memory.getData();
+	}
+
+	public int getData(int index) {
+		return memory.getData(index);
+	}
+
+	public void setData(int index, int value) {
+		memory.setData(index, value);
+	}
+	
+	public Instruction getInstruction(int instrNum) {
+		return IMAP.get(instrNum);
 	}
 }
