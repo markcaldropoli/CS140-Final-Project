@@ -29,6 +29,19 @@ public class MachineModel {
 			}
 		});
 		
+		//INSTRUCTION MAP entry for "STO"
+		IMAP.put(0x2, (arg, level) -> {
+			if(level < 1 || level > 2) {
+				throw new IllegalArgumentException("Illegal indirection level in STO instruction");
+			}
+			if(level > 1) {
+				IMAP.get(0x2).execute(memory.getData(cpu.getMemBase()+arg), level-1);
+			} else {
+				memory.setData(arg, cpu.getAccum());
+				cpu.incrPC();
+			}
+		});
+		
 		//INSTRUCTION MAP entry for "ADD"
 		IMAP.put(0x3, (arg, level) -> {
 			if(level < 0 || level > 2) {
