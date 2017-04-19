@@ -36,6 +36,35 @@ public class MachineModel {
 				cpu.incrPC();
 			}
 		});
+		
+		//INSTRUCTION MAP entry for "MUL"
+		IMAP.put(0x5, (arg, level) -> {
+			if(level < 0 || level > 2) {
+				throw new IllegalArgumentException("Illegal indirection level in MUL instruction");
+			}
+			if(level > 0) {
+				IMAP.get(0x5).execute(memory.getData(cpu.getMemBase()+arg), level-1);
+			} else {
+				cpu.setAccum(cpu.getAccum() * arg);
+				cpu.incrPC();
+			}
+		});
+		
+		//INSTRUCTION MAP entry for "DIV"
+		IMAP.put(0x6, (arg, level) -> {
+			if(level < 0 || level > 2) {
+				throw new IllegalArgumentException("Illegal indirection level in DIV instruction");
+			}
+			if(level > 0) {
+				IMAP.get(0x6).execute(memory.getData(cpu.getMemBase()+arg), level-1);
+			} else {
+				if(arg == 0) {
+					throw new DivideByZeroException();
+				}
+				cpu.setAccum(cpu.getAccum() / arg);
+				cpu.incrPC();
+			}
+		});
 	}
 	
 	public MachineModel() {
