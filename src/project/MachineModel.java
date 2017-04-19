@@ -123,6 +123,28 @@ public class MachineModel {
 			}
 			cpu.incrPC();
 		});
+		
+		//INSTRUCTION MAP entry for "CMPL"
+		IMAP.put(0x9, (arg, level) -> {
+			if(level < 1 || level > 2) {
+				throw new IllegalArgumentException("Illegal indirection level in CMPL instruction");
+			}
+			if(level > 1) {
+				IMAP.get(0x9).execute(memory.getData(cpu.getMemBase()+arg), level-1);
+			} else {
+				if(memory.getData(arg) < 0) {
+					cpu.setAccum(1);
+				} else {
+					cpu.setAccum(0);
+				}
+				cpu.incrPC();
+			}
+		});
+		
+		//INSTRUCTION MAP entry for "HALT"
+		IMAP.put(0xF, (arg, level) -> {
+			callback.halt();
+		});
 	}
 	
 	public MachineModel() {
