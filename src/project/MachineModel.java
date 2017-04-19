@@ -96,6 +96,23 @@ public class MachineModel {
 				cpu.incrPC();
 			}
 		});
+		
+		//INSTRUCTION MAP entry for "AND"
+		IMAP.put(0x7, (arg, level) -> {
+			if(level < 0 || level > 2) {
+				throw new IllegalArgumentException("Illegal indirection level in AND instruction");
+			}
+			if(level > 0) {
+				IMAP.get(0x7).execute(memory.getData(cpu.getMemBase()+arg), level-1);
+			} else {
+				if(cpu.getAccum() != 0 && arg != 0) {
+					cpu.setAccum(1);
+				} else {
+					cpu.setAccum(0);
+				}
+				cpu.incrPC();
+			}
+		});
 	}
 	
 	public MachineModel() {
