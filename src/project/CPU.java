@@ -29,7 +29,7 @@ public class CPU {
 		memBase = mb;
 	}
 	
-	public void incPC() {
+	public void incrPC() {
 		pCounter++;
 	}
 }
