@@ -113,6 +113,16 @@ public class MachineModel {
 				cpu.incrPC();
 			}
 		});
+		
+		//INSTRUCTION MAP entry for "NOT"
+		IMAP.put(0x8, (arg, level) -> {
+			if(cpu.getAccum() != 0) {
+				cpu.setAccum(0);
+			} else {
+				cpu.setAccum(1);
+			}
+			cpu.incrPC();
+		});
 	}
 	
 	public MachineModel() {
