@@ -205,7 +205,7 @@ public class MachineModel {
 		return cpu.getAccum();
 	}
 
-	public int getPCounter() {
+	public int getpCounter() {
 		return cpu.getPCounter();
 	}
 
@@ -217,7 +217,7 @@ public class MachineModel {
 		cpu.setAccum(ac);
 	}
 
-	public void setPCounter(int pc) {
+	public void setpCounter(int pc) {
 		cpu.setPCounter(pc);
 	}
 
@@ -237,7 +237,7 @@ public class MachineModel {
 		memory.setData(index, value);
 	}
 	
-	public Instruction getInstr(int instrNum) {
+	public Instruction get(int instrNum) {
 		return IMAP.get(instrNum);
 	}
 }
