@@ -3,7 +3,7 @@ package project;
 import java.util.TreeMap;
 
 public class MachineModel {
-	public TreeMap<Integer, Instruction> IMAP;
+	public TreeMap<Integer, Instruction> IMAP = new TreeMap<>();
 	private CPU cpu = new CPU();
 	private Memory memory = new Memory();
 	private HaltCallback callback;
