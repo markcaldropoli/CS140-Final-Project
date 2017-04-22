@@ -1,9 +1,10 @@
 package project;
 
+import java.util.Map;
 import java.util.TreeMap;
 
 public class MachineModel {
-	public TreeMap<Integer, Instruction> IMAP = new TreeMap<>();
+	public Map<Integer, Instruction> IMAP = new TreeMap<>();
 	private CPU cpu = new CPU();
 	private Memory memory = new Memory();
 	private HaltCallback callback;
