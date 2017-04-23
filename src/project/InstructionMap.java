@@ -13,7 +13,7 @@ public class InstructionMap {
 	public static Set<String> indirectOK= new TreeSet<>();
 
 	static {
-
+		//Source Code Names (24 total)
 		sourceCodes.add("NOP");
 		sourceCodes.add("LOD");
 		sourceCodes.add("LODI");
@@ -38,8 +38,8 @@ public class InstructionMap {
 		sourceCodes.add("JMPZI");
 		sourceCodes.add("JMPZA");
 		sourceCodes.add("HALT");
-		//add the other source code names listed above (24 including NOP)
-				
+		
+		//Source Code Names that Allow Indirect Forms (11 total)
 		indirectOK.add("LOD");
 		indirectOK.add("STO");
 		indirectOK.add("ADD");
@@ -51,14 +51,13 @@ public class InstructionMap {
 		indirectOK.add("CMPZ");
 		indirectOK.add("JUMP");
 		indirectOK.add("JMPZ");
-		//add the other source code names that allow indirect forms (11 including LOD)
 		
+		//Source Code Names that Do Not Take Arguments (3 total)
 		noArgument.add("NOP");
 		noArgument.add("NOT");
 		noArgument.add("HALT");
-		//add the other source code names that do not take arguments
-		//(3 including HALT)
-
+		
+		//Instructions & OpCode (24 total)
 		opcode.put("NOP", 0x0);
 		opcode.put("LOD", 0x1);
 		opcode.put("LODI", 0x1);
@@ -83,11 +82,8 @@ public class InstructionMap {
 		opcode.put("JMPZI", 0xC);
 		opcode.put("JMPZA", 0xC);
 		opcode.put("HALT", 0xF);
-		//add all the other instructions given in Project Part 1 and the mapping to their
-		//opcode, which is the number of the instruction. Note ADDI maps to 0x3, the same
-		//as ADD--similarly for the other instructions ending in I
-		//JUMPA maps to 0xB and JMPZ maps to 0xC (the same as JUMP and JMPZ)
-
+		
+		//Basic Mnemonics for each OpCode (14 total)
 		mnemonics.put(0x0, "NOP");
 		mnemonics.put(0x1, "LOD");
 		mnemonics.put(0x2, "STO");
@@ -102,10 +98,5 @@ public class InstructionMap {
 		mnemonics.put(0xB, "JUMP");
 		mnemonics.put(0xC, "JMPZ");
 		mnemonics.put(0xF, "HALT");
-		//add one entry for 0x1 through 0xC and 0xF. Where there are multiple possibilities
-		//use the basic mnemonic, e.g. mnemonics.put(0x3, "ADD"), 
-		//mnemonics.put(0xB, "JUMP")
-		//Here and in opcode, it is OK if you prefer to use 0,1,...,12 and 15 in place of 
-		//0x0, 0x1, ..., 0xC, and 0xF  
 	}
 }
