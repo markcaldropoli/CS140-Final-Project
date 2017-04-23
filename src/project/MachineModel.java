@@ -153,7 +153,7 @@ public class MachineModel {
 			if(level > 1) {
 				IMAP.get(0xA).execute(memory.getData(cpu.getMemBase()+arg), level-1);
 			} else {
-				if(memory.getData(arg) == 0) {
+				if(memory.getData(cpu.getMemBase()+arg) == 0) {
 					cpu.setAccum(1);
 				} else {
 					cpu.setAccum(0);
