@@ -13,9 +13,7 @@ public class MachineModel {
 		this.callback = callback;
 		
 		//INSTRUCTION MAP entry for "NOP"
-		IMAP.put(0x0, (arg, level) -> {
-			cpu.incrPC();
-		});
+		IMAP.put(0x0, (arg, level) -> cpu.incrPC());
 		
 		//INSTRUCTION MAP entry for "LOD"
 		IMAP.put(0x1, (arg, level) -> {
