@@ -38,7 +38,7 @@ public class MachineModel {
 			if(level > 1) {
 				IMAP.get(0x2).execute(memory.getData(cpu.getMemBase()+arg), level-1);
 			} else {
-				memory.setData(arg, cpu.getAccum());
+				memory.setData(cpu.getMemBase()+arg, cpu.getAccum());
 				cpu.incrPC();
 			}
 		});
