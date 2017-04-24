@@ -1,55 +1,55 @@
 # CS140 Final Project
 
 ### TODO List
-- [x] Part 1
+- [x] **Part 1**
   - [x] CPU (Class)
   - [x] Memory (Class)
   - [x] Instruction (Interface)
   - [x] DivideByZeroException (Class)
   - [x] HaltCallback (Interface)
   - [x] MachineModel (Class)
-- [x] Part 2
+- [x] **Part 2**
   - [x] InstructionMap (Class)
   - [x] Assembler (Class)
   - [x] Code (Class)
   - [x] MachineModel (Class Update)
   - [x] Loader (Class)
-- [ ] Part 3
+- [ ] **Part 3**
   - [ ] Assembler2 (Class)
-- [x] Part 4
+- [x] **Part 4**
   - [x] States (Enum)
-- [ ] Part 5
+- [ ] **Part 5**
   - [ ] Job (Class)
   - [ ] MachineModel (Class Update)
   - [ ] Memory (Class Update)
   - [ ] CodeAccessException (Class)
-- [x] Part 6
+- [x] **Part 6**
   - [x] InstructionTester (JUnit Test)
-- [ ] Part 7
+- [ ] **Part 7**
   - [ ] GUIMediator (Class)
   - [ ] StepControl (Class)
   - [ ] FilesMgr (Class)
-- [ ] Part 8
+- [ ] **Part 8**
   - [ ] GUIMediator (Class Update)
-- [ ] Part 9
+- [ ] **Part 9**
   - [ ] MachineModel (Class Update)
   - [ ] InstructionMap (Check Code)
   - [ ] GUIMediator (Class Update)
   - [ ] MemoryViewPanel (Class)
   - [ ] in.pasm (File Update)
   - [ ] out.pexe (File Update)
-- [ ] Part 10
+- [ ] **Part 10**
   - [ ] MemoryViewPanel (Check Code)
   - [ ] Code (Class Update)
   - [ ] CodeViewPanel (Class)
-- [ ] Part 11
+- [ ] **Part 11**
   - [ ] GUIMediator (Class Update)
-- [ ] Part 12
+- [ ] **Part 12**
   - [ ] JUMPA & JMPZA (Check Code)
   - [ ] MenuBarBuilder (Class)
   - [ ] GUIMediator (Class Update)
   - [ ] factorial.pexe (Add File)
   - [ ] merge.pasm (Add File)
-- [ ] Part 13
+- [ ] **Part 13**
   - [ ] ControlPanel (Class)
   - [ ] GUIMediator (Class Update)
