@@ -70,8 +70,8 @@ public class Assembler {
 		}
 	}
 
-	public static void main(String[] args) {
-		ArrayList<String> errors = new ArrayList<>();
-		assemble(new File("in.pasm"), new File("out.pexe"), errors);
-	}
+//	public static void main(String[] args) {
+//		ArrayList<String> errors = new ArrayList<>();
+//		assemble(new File("in.pasm"), new File("out.pexe"), errors);
+//	}
 }
