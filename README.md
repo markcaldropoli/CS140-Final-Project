@@ -22,7 +22,8 @@
   - [ ] Job (Class)
   - [ ] MachineModel (Class Update)
   - [ ] Memory (Class Update)
-  - [ ] CodeAccessException (Class)
+  - [x] CodeAccessException (Class)
+  - [ ] MachineModel (Class Update)
 - [x] **Part 6**
   - [x] InstructionTester (JUnit Test)
 - [ ] **Part 7**
