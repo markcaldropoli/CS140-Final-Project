@@ -194,9 +194,7 @@ public class MachineModel {
 		});
 		
 		//INSTRUCTION MAP entry for "HALT"
-		IMAP.put(0xF, (arg, level) -> {
-			callback.halt();
-		});
+		IMAP.put(0xF, (arg, level) -> callback.halt());
 	}
 	
 	public MachineModel() {
