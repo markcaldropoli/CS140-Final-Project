@@ -23,6 +23,7 @@ public class Loader {
 					int indirLvl = parser.nextInt(16);
 					int arg = parser.nextInt(16);
 					model.setCode(codeOffset+codeSize, firstInt, indirLvl, arg);
+					codeSize++;
 				} else {
 					model.setData(firstInt+memoryOffset, parser.nextInt(16));
 				}
@@ -42,7 +43,7 @@ public class Loader {
 		MachineModel model = new MachineModel();
 		String s = Loader.load(model, new File("out.pexe"),16,32);
 		for(int i = 16; i < 16+Integer.parseInt(s); i++) {
-			System.out.println(model.getCode().getText(i));			
+			System.out.println(model.getCode().getText(i));
 		}
 		System.out.println("--");
 		System.out.println("4FF " + 

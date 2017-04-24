@@ -70,6 +70,7 @@ public class Code {
 		if(x == 2) {
 			bldr.append(']');
 		}
+
 		return bldr.toString();
 	}
 	
