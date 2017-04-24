@@ -1,6 +1,4 @@
-.idea/
-*.iml
-bin/
-out/
-.project
-.classpath
+/*
+!.gitignore
+!README.md
+!src/
