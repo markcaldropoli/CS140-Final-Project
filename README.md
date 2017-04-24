@@ -4,9 +4,9 @@
 - [x] Part 1
 - [x] Part 2
 - [ ] Part 3
-- [ ] Part 4
+- [x] Part 4
 - [ ] Part 5
-- [ ] Part 6
+- [x] Part 6
 - [ ] Part 7
 - [ ] Part 8
 - [ ] Part 9
