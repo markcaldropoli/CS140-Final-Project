@@ -8,10 +8,7 @@
   - [x] DivideByZeroException (Class)
   - [x] HaltCallback (Interface)
   - [x] MachineModel (Class)
-- [x] **Part 2** -
-```diff 
-- Due Wednesday 4/26/17
-```
+- [x] **Part 2** -```diff - Due Wednesday 4/26/17```
   - [x] InstructionMap (Class)
   - [x] Assembler (Class)
   - [x] Code (Class)
