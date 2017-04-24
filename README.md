@@ -54,3 +54,7 @@
 - [ ] **Part 13**
   - [ ] ControlPanel (Class)
   - [ ] GUIMediator (Class Update)
+- [ ] **Part 14**
+  - [ ] AccumulatorViewPanel (Class)
+  - [ ] ProcessorViewPanel (Class Update)
+  - [ ] GUIMediator (Class Update)
