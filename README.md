@@ -2,6 +2,8 @@
 
 ### TODO List
 - [x] Part 1
+  - [x] CPU
+  - [x] Memory
 - [x] Part 2
 - [ ] Part 3
 - [x] Part 4
