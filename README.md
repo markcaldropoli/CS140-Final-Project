@@ -26,7 +26,7 @@
 - [x] **Part 6**
   - [x] InstructionTester (JUnit Test)
 - [ ] **Part 7**
-  - [ ] GUIMediator (Class)
+  - [x] GUIMediator (Class)
   - [ ] StepControl (Class)
   - [ ] FilesMgr (Class)
 - [ ] **Part 8**
