@@ -2,3 +2,4 @@
 !.gitignore
 !README.md
 !src/
+**.DS_Store
