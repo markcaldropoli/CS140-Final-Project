@@ -8,6 +8,7 @@ public class MachineModel {
 	private CPU cpu = new CPU();
 	private Memory memory = new Memory();
 	private HaltCallback callback;
+	private Code code = new Code();
 	
 	public MachineModel(HaltCallback callback) {
 		this.callback = callback;
@@ -239,5 +240,13 @@ public class MachineModel {
 	
 	public Instruction get(int instrNum) {
 		return IMAP.get(instrNum);
+	}
+	
+	public Code getCode() {
+		return code;
+	}
+
+	public void setCode(int index, int op, int indirLvl, int arg) {
+		code.setCode(index, op, indirLvl, arg);
 	}
 }
