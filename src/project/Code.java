@@ -89,11 +89,11 @@ public class Code {
 			System.out.print(c.getIndirLvl(2*i+1) + " ");
 			System.out.println(c.getArg(2*i+1));
 		}
-		c.setCode(8, 0, 0, 0);	//NEW
-		c.setCode(9, 8, 0, 0);	//NEW
-		c.setCode(10, 15, 0, 0);	//NEW
-		System.out.println(c.getText(8));	//NEW
-		System.out.println(c.getText(9));	//NEW
-		System.out.println(c.getText(10));	//NEW
+		c.setCode(8, 0, 0, 0);
+		c.setCode(9, 8, 0, 0);
+		c.setCode(10, 15, 0, 0);
+		System.out.println(c.getText(8));
+		System.out.println(c.getText(9));
+		System.out.println(c.getText(10));
 	}*/
 }
