@@ -18,12 +18,11 @@
   - [ ] Assembler2 (Class)
 - [x] **Part 4**
   - [x] States (Enum)
-- [ ] **Part 5**
-  - [ ] Job (Class)
-  - [ ] MachineModel (Class Update)
-  - [ ] Memory (Class Update)
+- [x] **Part 5**
+  - [x] Job (Class)
+  - [x] Memory (Class Update)
   - [x] CodeAccessException (Class)
-  - [ ] MachineModel (Class Update)
+  - [x] MachineModel (Class Update)
 - [x] **Part 6**
   - [x] InstructionTester (JUnit Test)
 - [ ] **Part 7**
