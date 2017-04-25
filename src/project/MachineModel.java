@@ -213,45 +213,49 @@ public class MachineModel {
 	public MachineModel() {
 		this(() -> System.exit(0));
 	}
-
-	public int getAccum() {
-		return cpu.getAccum();
-	}
-
-	public int getpCounter() {
-		return cpu.getPCounter();
-	}
-
-	public int getMemBase() {
-		return cpu.getMemBase();
-	}
-
-	public void setAccum(int i) {
-		cpu.setAccum(i);
-	}
-
-	public void setpCounter(int i) {
-		cpu.setPCounter(i);
-	}
-
-	public void setMemBase(int i) {
-		cpu.setMemBase(i);
-	}
-
-	public int[] getData() {
-		return memory.getData();
-	}
-
+	
 	public int getData(int index) {
 		return memory.getData(index);
 	}
-
+	
 	public void setData(int index, int value) {
 		memory.setData(index, value);
 	}
 	
+	public int getChangedIndex() {
+		return memory.getChangedIndex();
+	}
+	
+	public int[] getData() {
+		return memory.getData();
+	}
+	
 	public Instruction get(Integer key) {
 		return IMAP.get(key);
+	}
+	
+	public int getpCounter() {
+		return cpu.getPCounter();
+	}
+	
+	public int getAccum() {
+		return cpu.getAccum();
+	}
+	
+	public int getMemBase() {
+		return cpu.getMemBase();
+	}
+	
+	public void setpCounter(int i) {
+		cpu.setPCounter(i);
+	}
+	
+	public void setAccum(int i) {
+		cpu.setAccum(i);
+	}
+	
+	public void setMemBase(int i) {
+		cpu.setMemBase(i);
 	}
 	
 	public Code getCode() {
@@ -264,10 +268,6 @@ public class MachineModel {
 
 	public Job getCurrentJob() {
 		return currentJob;
-	}
-	
-	public int getChangedIndex() {
-		return memory.getChangedIndex();
 	}
 
 	public void changeToJob(int i) {
@@ -291,14 +291,6 @@ public class MachineModel {
 		currentJob.setCurrentState(currentState);
 	}
 	
-	public void clearJob() {
-		memory.clear(currentJob.getStartmemoryIndex(), currentJob.getStartmemoryIndex()+Memory.DATA_SIZE/4);
-		code.clear(currentJob.getStartcodeIndex(), currentJob.getStartcodeIndex()+currentJob.getCodeSize());
-		cpu.setAccum(0);
-		cpu.setPCounter(currentJob.getStartcodeIndex());
-		currentJob.reset();
-	}
-	
 	public void step() {
 		try {
 			int pc = cpu.getPCounter();
@@ -310,5 +302,13 @@ public class MachineModel {
 			callback.halt();
 			throw e;
 		}
+	}
+	
+	public void clearJob() {
+		memory.clear(currentJob.getStartmemoryIndex(), currentJob.getStartmemoryIndex()+Memory.DATA_SIZE/4);
+		code.clear(currentJob.getStartcodeIndex(), currentJob.getStartcodeIndex()+currentJob.getCodeSize());
+		cpu.setAccum(0);
+		cpu.setPCounter(currentJob.getStartcodeIndex());
+		currentJob.reset();
 	}
 }
