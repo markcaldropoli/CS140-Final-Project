@@ -9,6 +9,8 @@ public class MachineModel {
 	private Memory memory = new Memory();
 	private HaltCallback callback;
 	private Code code = new Code();
+	public Job[] jobs = new Job[4];
+	private Job currentJob;
 	
 	public MachineModel(HaltCallback callback) {
 		this.callback = callback;
@@ -196,6 +198,16 @@ public class MachineModel {
 		
 		//INSTRUCTION MAP entry for "HALT"
 		IMAP.put(0xF, (arg, level) -> callback.halt());
+		
+		for(int i=0; i<4; i++) {
+			jobs[i] = new Job();
+		}
+		currentJob = jobs[0];
+		for(int i=0; i<4; i++) {
+			jobs[i].setId(i);
+			jobs[i].setStartcodeIndex(i*Code.CODE_MAX/4);
+			jobs[i].setStartmemoryIndex(i*Memory.DATA_SIZE/4);
+		}
 	}
 	
 	public MachineModel() {
@@ -214,16 +226,16 @@ public class MachineModel {
 		return cpu.getMemBase();
 	}
 
-	public void setAccum(int ac) {
-		cpu.setAccum(ac);
+	public void setAccum(int i) {
+		cpu.setAccum(i);
 	}
 
-	public void setpCounter(int pc) {
-		cpu.setPCounter(pc);
+	public void setpCounter(int i) {
+		cpu.setPCounter(i);
 	}
 
-	public void setMemBase(int mb) {
-		cpu.setMemBase(mb);
+	public void setMemBase(int i) {
+		cpu.setMemBase(i);
 	}
 
 	public int[] getData() {
@@ -238,8 +250,8 @@ public class MachineModel {
 		memory.setData(index, value);
 	}
 	
-	public Instruction get(int instrNum) {
-		return IMAP.get(instrNum);
+	public Instruction get(Integer key) {
+		return IMAP.get(key);
 	}
 	
 	public Code getCode() {
@@ -248,5 +260,55 @@ public class MachineModel {
 
 	public void setCode(int index, int op, int indirLvl, int arg) {
 		code.setCode(index, op, indirLvl, arg);
+	}
+
+	public Job getCurrentJob() {
+		return currentJob;
+	}
+	
+	public int getChangedIndex() {
+		return memory.getChangedIndex();
+	}
+
+	public void changeToJob(int i) {
+		if(i < 0 || i > 3) {
+			throw new IllegalArgumentException();
+		} else if(i != currentJob.getId()) {
+			currentJob.setCurrentAcc(cpu.getAccum());
+			currentJob.setCurrentPC(cpu.getPCounter());
+			currentJob = jobs[i];
+			cpu.setAccum(currentJob.getCurrentAcc());
+			cpu.setPCounter(currentJob.getCurrentPC());
+			cpu.setMemBase(currentJob.getStartmemoryIndex());
+		}
+	}
+	
+	public States getCurrentState() {
+		return currentJob.getCurrentState();
+	}
+	
+	public void setCurrentState(States currentState) {
+		currentJob.setCurrentState(currentState);
+	}
+	
+	public void clearJob() {
+		memory.clear(currentJob.getStartmemoryIndex(), currentJob.getStartmemoryIndex()+Memory.DATA_SIZE/4);
+		code.clear(currentJob.getStartcodeIndex(), currentJob.getStartcodeIndex()+currentJob.getCodeSize());
+		cpu.setAccum(0);
+		cpu.setPCounter(currentJob.getStartcodeIndex());
+		currentJob.reset();
+	}
+	
+	public void step() {
+		try {
+			int pc = cpu.getPCounter();
+			if(pc < currentJob.getStartcodeIndex() || pc >= currentJob.getStartcodeIndex()+currentJob.getCodeSize()) {
+				throw new CodeAccessException();
+			}
+			IMAP.get(code.getOp(pc)).execute(code.getArg(pc), code.getIndirLvl(pc));;
+		} catch(Exception e) {
+			callback.halt();
+			throw e;
+		}
 	}
 }
