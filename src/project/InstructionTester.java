@@ -428,27 +428,25 @@ public class InstructionTester {
 		assertEquals("Accumulator was not changed", 200,
 				machine.getAccum());
 	}
-
-	/* TO COME
+	
 	@Test 
 	// this test checks whether the jump is done correctly, when
 	// addressing is indirect
 	public void testJUMPabsolute() {
 		Instruction instr = machine.get(0xB);
 		int arg = 910; 
-		// if index = data[offsetinit + 910] = 860
-		// then the memory value is data[offsetinit + 860] = data[1060] = 360
 		machine.setAccum(200);
 		machine.setpCounter(400);
-		instr.execute(arg, 4); 
+		Job job = machine.getCurrentJob();
+		job.setStartcodeIndex(777);
+		instr.execute(arg, 3); 
 		// should add 360 to the program counter
 		assertArrayEquals(dataCopy, machine.getData()); 
-		assertEquals("Program counter was changed", 760,
+		assertEquals("Program counter was changed", 777+860,
 				machine.getpCounter());
 		assertEquals("Accumulator was not changed", 200,
 				machine.getAccum());
 	}
-	*/
 	
 	@Test 
 	// this test checks whether the jump is done correctly, when
@@ -504,6 +502,25 @@ public class InstructionTester {
 	}
 
 	@Test 
+	// this test checks whether the jump is done correctly, when
+	// addressing is indirect
+	public void testJMPZabsoluteAccumZero() {
+		Instruction instr = machine.get(0xC);
+		int arg = 910; 
+		machine.setAccum(0);
+		machine.setpCounter(400);
+		Job job = machine.getCurrentJob();
+		job.setStartcodeIndex(777);
+		instr.execute(arg, 3); 
+		// should add 360 to the program counter
+		assertArrayEquals(dataCopy, machine.getData()); 
+		assertEquals("Program counter was changed", 777+860,
+				machine.getpCounter());
+		assertEquals("Accumulator was not changed", 0,
+				machine.getAccum());
+	}
+	
+	@Test 
 	// this test checks whether no jump is done if accumulator is zero, 
 	// when addressing is direct
 	public void testJMPZimmedAccumNonZero() {
@@ -553,6 +570,25 @@ public class InstructionTester {
 				machine.getAccum());
 	}
 
+	@Test 
+	// this test checks whether the jump is done correctly, when
+	// addressing is indirect
+	public void testJMPZabsoluteAccumNonZero() {
+		Instruction instr = machine.get(0xC);
+		int arg = 910; 
+		machine.setAccum(200);
+		machine.setpCounter(400);
+		Job job = machine.getCurrentJob();
+		job.setStartcodeIndex(777);
+		instr.execute(arg, 3); 
+		// should add 360 to the program counter
+		assertArrayEquals(dataCopy, machine.getData()); 
+		assertEquals("Program counter was changed", 401,
+				machine.getpCounter());
+		assertEquals("Accumulator was not changed", 200,
+				machine.getAccum());
+	}
+	
 	@Test
 	// Check CMPL when comparing less than 0 gives true
 	public void testCMPLdirectMemLT0() {
@@ -1329,4 +1365,3 @@ public class InstructionTester {
 		instr.execute(0, 2);
 	}
 }
-
