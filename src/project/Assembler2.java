@@ -137,7 +137,7 @@ public class Assembler2 {
 		
 		outText.addAll(data);
 		
-		if(errors.size() > 0) {
+		if(errors.size() == 0) {
 			try (PrintWriter out = new PrintWriter(output)){
 				for(String s : outText) out.println(s);
 			} catch (FileNotFoundException e) {
