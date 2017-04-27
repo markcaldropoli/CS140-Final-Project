@@ -1,5 +1,6 @@
 package project;
 
+@SuppressWarnings("serial")
 public class DivideByZeroException extends RuntimeException {
     /**
      * No-argument constructor

@@ -99,6 +99,7 @@ public class Assembler2 {
 					}
 				}
 
+				@SuppressWarnings("unused")
 				int arg = 0;
 				try {
 					arg = Integer.parseInt(parts[1],16);
