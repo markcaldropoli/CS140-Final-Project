@@ -57,3 +57,8 @@
   - [ ] AccumulatorViewPanel (Class)
   - [ ] ProcessorViewPanel (Class Update)
   - [ ] GUIMediator (Class Update)
+- [ ] **Part 15**
+  - [ ] WindowListenerFactory (Class)
+  - [ ] FilesMgr (Class Update)
+- [ ] **Part 16**
+  - *TBD - Anything Missing*
