@@ -14,8 +14,8 @@
   - [x] Code (Class)
   - [x] MachineModel (Class Update)
   - [x] Loader (Class)
-- [ ] **Part 3**
-  - [ ] Assembler2 (Class)
+- [x] **Part 3**
+  - [x] Assembler2 (Class)
 - [x] **Part 4**
   - [x] States (Enum)
 - [x] **Part 5**
