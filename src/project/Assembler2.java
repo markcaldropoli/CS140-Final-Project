@@ -18,7 +18,7 @@ public class Assembler2 {
 			boolean dataSeparator = false;
 			for(int i=0; i<inText.size(); i++) {
 				String line = inText.get(i);
-				if(line.trim().length() == 0 && inText.get(i+1).trim().length() > 0) {
+				if(line.trim().length() == 0 && i + 1 < inText.size() && inText.get(i+1).trim().length() > 0) {
 					errors.add("Error: line "+i+" is a blank line");
 				}
 				if(line.charAt(0) == ' ' || line.charAt(0) == '\t') {
@@ -31,7 +31,7 @@ public class Assembler2 {
 						}
 						dataSeparator = true;
 					}
-				} else {
+				} else if (dataSeparator && line.trim().toUpperCase().startsWith("--")) {
 					errors.add("Error: line "+i+" has a duplicate data separator");
 				}
 			}
@@ -59,6 +59,11 @@ public class Assembler2 {
 		for(int i=0; i<code.size(); i++) {
 			String line = code.get(i);
 			String[] parts = line.trim().split("\\s+");
+
+			if (!InstructionMap.sourceCodes.contains(parts[0])) {
+				errors.add("Error: line " + i + " does not contain a valid instruction");
+				return;
+			}
 			
 			if(InstructionMap.sourceCodes.contains(parts[0].toUpperCase()) &&
 					!InstructionMap.sourceCodes.contains(parts[0])) {
@@ -87,18 +92,19 @@ public class Assembler2 {
 					} else {
 						if(parts[1].lastIndexOf("]") != parts[1].length()-1) {
 							errors.add("Error: line "+i+" does not have a closing bracket");
+						} else {
 							parts[1] = parts[1].substring(1, parts[1].length() - 1);
 							indirLvl = 2;
 						}
 					}
 				}
-			}
-			
-			int arg = 0;
-			try {
-				arg = Integer.parseInt(parts[1],16);
-			} catch(NumberFormatException e) {
-				errors.add("Error: line "+i+" does not have a numeric argument");
+
+				int arg = 0;
+				try {
+					arg = Integer.parseInt(parts[1],16);
+				} catch(NumberFormatException e) {
+					errors.add("Error: line "+i+" does not have a numeric argument");
+				}
 			}
 
 			if (parts[0].endsWith("I")) {
@@ -121,11 +127,9 @@ public class Assembler2 {
 		for(int i=0; i<data.size(); i++) {
 			String line = data.get(i);
 			String[] parts = line.trim().split("\\s+");
-			int arg = 0; 
-			int arg2 = 0;
 			try {
-				arg = Integer.parseInt(parts[1],16);
-				arg2 = Integer.parseInt(parts[0],16);
+				Integer.parseInt(parts[1],16);
+				Integer.parseInt(parts[0],16);
 			} catch (NumberFormatException e) {
 				errors.add("Error: line "+code.size()+1+i+" does not have a numeric argument");
 			}
@@ -139,6 +143,14 @@ public class Assembler2 {
 			} catch (FileNotFoundException e) {
 				errors.add("Cannot create output file");
 			}
+		}
+	}
+
+	public static void main(String[] args) {
+		ArrayList<String> errors = new ArrayList<>();
+		assemble(new File("in.pasm"), new File("out.pexe"), errors);
+		for (String error : errors) {
+			System.out.println(error);
 		}
 	}
 }
