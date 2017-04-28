@@ -25,10 +25,10 @@
   - [x] MachineModel (Class Update)
 - [x] **Part 6**
   - [x] InstructionTester (JUnit Test)
-- [ ] **Part 7**
+- [x] **Part 7**
   - [x] GUIMediator (Class)
   - [x] StepControl (Class)
-  - [ ] FilesMgr (Class)
+  - [x] FilesMgr (Class)
 - [ ] **Part 8**
   - [ ] GUIMediator (Class Update)
 - [ ] **Part 9**
