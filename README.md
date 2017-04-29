@@ -29,8 +29,8 @@
   - [x] GUIMediator (Class)
   - [x] StepControl (Class)
   - [x] FilesMgr (Class)
-- [ ] **Part 8**
-  - [ ] GUIMediator (Class Update)
+- [x] **Part 8**
+  - [x] GUIMediator (Class Update)
 - [ ] **Part 9**
   - [ ] MachineModel (Class Update)
   - [ ] InstructionMap (Check Code)
