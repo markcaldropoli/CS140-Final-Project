@@ -171,7 +171,8 @@ public class MachineModel {
 			if(level > 0 && level < 3) {
 				IMAP.get(0xB).execute(memory.getData(cpu.getMemBase()+arg), level-1);
 			} else if(level == 3) {
-				//TODO arg + starting value of pCounter
+				int arg1 = memory.getData(cpu.getMemBase()+arg);
+				cpu.setPCounter(arg1 + currentJob.getStartcodeIndex());
 			} else {
 				cpu.setPCounter(cpu.getPCounter()+arg);
 			}
@@ -186,7 +187,8 @@ public class MachineModel {
 				if(level > 0 && level < 3) {
 					IMAP.get(0xB).execute(memory.getData(cpu.getMemBase()+arg), level-1);
 				} else if(level == 3) {
-					//TODO arg + starting value of pCounter
+					int arg1 = memory.getData(cpu.getMemBase()+arg);
+					cpu.setPCounter(arg1 + currentJob.getStartcodeIndex());
 				} else {
 					cpu.setPCounter(cpu.getPCounter()+arg);
 				}
@@ -208,6 +210,7 @@ public class MachineModel {
 			jobs[i].setStartcodeIndex(i*Code.CODE_MAX/4);
 			jobs[i].setStartmemoryIndex(i*Memory.DATA_SIZE/4);
 		}
+		jobs[0] = currentJob;
 	}
 	
 	public MachineModel() {
