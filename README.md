@@ -31,13 +31,13 @@
   - [x] FilesMgr (Class)
 - [x] **Part 8**
   - [x] GUIMediator (Class Update)
-- [ ] **Part 9**
-  - [ ] MachineModel (Class Update)
-  - [ ] InstructionMap (Check Code)
-  - [ ] GUIMediator (Class Update)
-  - [ ] MemoryViewPanel (Class)
-  - [ ] in.pasm (File Update)
-  - [ ] out.pexe (File Update)
+- [x] **Part 9**
+  - [x] MachineModel (Class Update)
+  - [x] InstructionMap (Check Code)
+  - [x] GUIMediator (Class Update)
+  - [x] MemoryViewPanel (Class)
+  - [x] in.pasm (File Update)
+  - [x] out.pexe (File Update)
 - [ ] **Part 10**
   - [ ] MemoryViewPanel (Check Code)
   - [ ] Code (Class Update)
