@@ -6,7 +6,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class ControlPanel implements Observer {
-
     private GUIMediator gui;
     private JButton stepButton = new JButton("Step");
     private JButton clearButton = new JButton("Clear");
@@ -14,9 +13,8 @@ public class ControlPanel implements Observer {
     private JButton reloadButton = new JButton("Reload");
 
     public ControlPanel(GUIMediator gui) {
-        gui.addObserver(this);
-
         this.gui = gui;
+        gui.addObserver(this);
     }
 
     public JComponent createControlDisplay() {
