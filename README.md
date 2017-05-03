@@ -38,10 +38,10 @@
   - [x] MemoryViewPanel (Class)
   - [x] in.pasm (File Update)
   - [x] out.pexe (File Update)
-- [ ] **Part 10**
-  - [ ] MemoryViewPanel (Check Code)
-  - [ ] Code (Class Update)
-  - [ ] CodeViewPanel (Class)
+- [x] **Part 10**
+  - [x] MemoryViewPanel (Check Code)
+  - [x] Code (Class Update)
+  - [x] CodeViewPanel (Class)
 - [ ] **Part 11**
   - [ ] GUIMediator (Class Update)
 - [ ] **Part 12**
