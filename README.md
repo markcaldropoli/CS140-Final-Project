@@ -57,7 +57,10 @@
   - [ ] ProcessorViewPanel (Class Update)
   - [ ] GUIMediator (Class Update)
 - [ ] **Part 15**
-  - [ ] WindowListenerFactory (Class)
   - [ ] FilesMgr (Class Update)
+  - [ ] WindowListenerFactory (Class)
+  - [ ] GUIMediator (Class Update)
+  - [ ] Test Files - data.zip (Add Files)
+  - [ ] Fix Errors (Debug)
 - [ ] **Part 16**
   - *TBD - Anything Missing*
