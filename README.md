@@ -49,9 +49,9 @@
   - [x] GUIMediator (Class Update)
   - [x] factorial.pexe (Add File)
   - [x] merge.pasm (Add File)
-- [ ] **Part 13**
-  - [ ] ControlPanel (Class)
-  - [ ] GUIMediator (Class Update)
+- [x] **Part 13**
+  - [x] ControlPanel (Class)
+  - [x] GUIMediator (Class Update)
 - [ ] **Part 14**
   - [ ] AccumulatorViewPanel (Class)
   - [ ] ProcessorViewPanel (Class Update)
