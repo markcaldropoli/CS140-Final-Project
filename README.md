@@ -44,12 +44,11 @@
   - [x] CodeViewPanel (Class)
 - [x] **Part 11**
   - [x] GUIMediator (Class Update)
-- [ ] **Part 12**
-  - [ ] JUMPA & JMPZA (Check Code)
-  - [ ] MenuBarBuilder (Class)
-  - [ ] GUIMediator (Class Update)
-  - [ ] factorial.pexe (Add File)
-  - [ ] merge.pasm (Add File)
+- [x] **Part 12**
+  - [x] MenuBarBuilder (Class)
+  - [x] GUIMediator (Class Update)
+  - [x] factorial.pexe (Add File)
+  - [x] merge.pasm (Add File)
 - [ ] **Part 13**
   - [ ] ControlPanel (Class)
   - [ ] GUIMediator (Class Update)
