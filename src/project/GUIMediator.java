@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.util.Observable;
 
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -21,7 +22,7 @@ public class GUIMediator extends Observable {
 	private MemoryViewPanel memoryViewPanel3;
 	//private ControlPanel controlPanel;
 	//private ProcessorViewPanel processorPanel;
-	//private MenuBarBuilder menuBuilder;
+	private MenuBarBuilder menuBuilder;
 	
 	public MachineModel getModel() {
 		return model;
@@ -197,8 +198,13 @@ public class GUIMediator extends Observable {
 		memoryViewPanel3 = new MemoryViewPanel(this, model, Memory.DATA_SIZE/2, Memory.DATA_SIZE);
 		//controlPanel = new ControlPanel(this);
 		//processorPanel = new ProcessorViewPanel(this, model);
-		//menuBuilder = new MenuBarBuilder(this);
+		menuBuilder = new MenuBarBuilder(this);
 		frame = new JFrame("Simulator");
+		JMenuBar bar = new JMenuBar();
+		frame.setJMenuBar(bar);
+		bar.add(menuBuilder.createFileMenu());
+		bar.add(menuBuilder.createExecuteMenu());
+		bar.add(menuBuilder.createJobsMenu());
 		Container content = frame.getContentPane();
 		content.setLayout(new BorderLayout(1,1));
 		content.setBackground(Color.BLACK);
@@ -221,8 +227,7 @@ public class GUIMediator extends Observable {
 	        public void run() {
 	            GUIMediator organizer = new GUIMediator();
 	            MachineModel model = new MachineModel(
-	            //() 
-	            //-> organizer.setCurrentState(States.PROGRAM_HALTED)
+	            () -> organizer.setCurrentState(States.PROGRAM_HALTED)
 	            );
 	            organizer.setModel(model);
 	            organizer.createAndShowGUI();
