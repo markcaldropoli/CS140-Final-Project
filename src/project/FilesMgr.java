@@ -13,7 +13,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class FileMgr {
+public class FilesMgr {
 	private GUIMediator gui;
 	private MachineModel model;
 	private String defaultDir; //Eclipse's default directory
@@ -22,7 +22,7 @@ public class FileMgr {
 	private Properties properties = null;
 	private File currentlyExecutingFile = null; //Java method for persistent properties
 	
-	public FileMgr(GUIMediator gui) {
+	public FilesMgr(GUIMediator gui) {
 		this.gui = gui;
 		model = gui.getModel();
 	}
