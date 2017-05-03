@@ -42,8 +42,8 @@
   - [x] MemoryViewPanel (Check Code)
   - [x] Code (Class Update)
   - [x] CodeViewPanel (Class)
-- [ ] **Part 11**
-  - [ ] GUIMediator (Class Update)
+- [x] **Part 11**
+  - [x] GUIMediator (Class Update)
 - [ ] **Part 12**
   - [ ] JUMPA & JMPZA (Check Code)
   - [ ] MenuBarBuilder (Class)
