@@ -77,7 +77,7 @@ public class FilesMgr {
 	/**
 	 * Translate method reads a source "pasm" file and saves the
 	 * file with the extension "pexe" by collecting the input and output
-	 * files and calling Assembler.assemble. If the source has errors 
+	 * files and calling Assembler2.assemble. If the source has errors 
 	 * the error messages will be reported in a JOptionPane.  
 	 */
 	public void assembleFile() {
@@ -129,7 +129,7 @@ public class FilesMgr {
 					System.out.println("Error writing properties file");
 				}
 				ArrayList<String> errors = new ArrayList<>();
-				Assembler.assemble(source, outputExe, errors); 
+				Assembler2.assemble(source, outputExe, errors); 
 				if (errors.size() == 0){
 					JOptionPane.showMessageDialog(
 							gui.getFrame(), 
