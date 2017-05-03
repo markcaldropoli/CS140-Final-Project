@@ -63,4 +63,5 @@
   - [ ] Test Files - data.zip (Add Files)
   - [ ] Fix Errors (Debug)
 - [ ] **Part 16**
+  - [ ] Assembler2 - Refer to Part 3 (Class Update)
   - *TBD - Anything Missing*
