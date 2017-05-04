@@ -23,12 +23,12 @@ public class ProcessorViewPanel implements Observer {
 
 	public JComponent createProcessorDisplay() {
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(1,0));
-		panel.add(new JLabel("Accumulator: "));
+		panel.setLayout(new GridLayout(1,3));
+		panel.add(new JLabel("Accumulator: ", JLabel.RIGHT));
 		panel.add(acc);
-		panel.add(new JLabel("Program Counter: "));
+		panel.add(new JLabel("Program Counter: ", JLabel.RIGHT));
 		panel.add(pc);
-		panel.add(new JLabel("Memory Base: "));
+		panel.add(new JLabel("Memory Base: ", JLabel.RIGHT));
 		panel.add(mb);
 		return panel;
 	}
