@@ -143,8 +143,8 @@ public class FilesMgr {
 						sb.append(s); sb.append("\n");
 					}
 					JOptionPane.showMessageDialog(
-							gui.getFrame(), 
-							errors,
+							gui.getFrame(),
+							sb.toString(),
 							"Source code error",
 							JOptionPane.INFORMATION_MESSAGE);
 				}
