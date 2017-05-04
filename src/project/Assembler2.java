@@ -16,12 +16,12 @@ public class Assembler2 {
 				inText.add(sc.nextLine());
 			}
 			boolean dataSeparator = false;
-			for(int i=0; i<inText.size(); i++) {
-				String line = inText.get(i);
+			for(int i=1; i<=inText.size(); i++) {
+				String line = inText.get(i-1);
 				if(line.trim().length() == 0 && i + 1 < inText.size() && inText.get(i+1).trim().length() > 0) {
 					errors.add("Error: line "+i+" is a blank line");
 				}
-				if(line.charAt(0) == ' ' || line.charAt(0) == '\t') {
+				if(!line.trim().isEmpty() && (line.charAt(0) == ' ' || line.charAt(0) == '\t')) {
 					errors.add("Error: line "+i+" starts with white space");
 				}
 				if(!dataSeparator) {
@@ -56,8 +56,14 @@ public class Assembler2 {
 		}
 
 		ArrayList<String> outText = new ArrayList<>();
-		for(int i=0; i<code.size(); i++) {
-			String line = code.get(i);
+		System.out.println("Code size: " + code.size());
+		for(int i=1; i<=code.size(); i++) {
+			String line = code.get(i-1);
+
+			if (line.trim().isEmpty()) {
+				continue;
+			}
+
 			String[] parts = line.trim().split("\\s+");
 
 			if (!InstructionMap.sourceCodes.contains(parts[0])) {
@@ -125,14 +131,14 @@ public class Assembler2 {
 
 		outText.add("-1");
 		
-		for(int i=0; i<data.size(); i++) {
-			String line = data.get(i);
+		for(int i=1; i<=data.size(); i++) {
+			String line = data.get(i-1);
 			String[] parts = line.trim().split("\\s+");
 			try {
 				Integer.parseInt(parts[1],16);
 				Integer.parseInt(parts[0],16);
 			} catch (NumberFormatException e) {
-				errors.add("Error: line "+code.size()+1+i+" does not have a numeric argument");
+				errors.add("Error: line "+(code.size()+1+i)+" data address is not a hex number");
 			}
 		}
 		

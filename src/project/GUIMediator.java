@@ -222,7 +222,8 @@ public class GUIMediator extends Observable {
 		//Return here for the other GUI components
 		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//Return here for other setup details
-		//frame.setVisible(true);
+
+		frame.setVisible(true);
 
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.addWindowListener(WindowListenerFactory.windowClosingFactory(e -> exit()));
