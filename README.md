@@ -52,14 +52,14 @@
 - [x] **Part 13**
   - [x] ControlPanel (Class)
   - [x] GUIMediator (Class Update)
-- [ ] **Part 14**
-  - [ ] AccumulatorViewPanel (Class)
-  - [ ] ProcessorViewPanel (Class Update)
-  - [ ] GUIMediator (Class Update)
+- [x] **Part 14**
+  - [x] AccumulatorViewPanel (Class)
+  - [x] ProcessorViewPanel (Class Update)
+  - [x] GUIMediator (Class Update)
 - [ ] **Part 15**
-  - [ ] FilesMgr (Class Update)
-  - [ ] WindowListenerFactory (Class)
-  - [ ] GUIMediator (Class Update)
+  - [x] FilesMgr (Class Update)
+  - [x] WindowListenerFactory (Class)
+  - [x] GUIMediator (Class Update)
   - [ ] Test Files - data.zip (Add Files)
   - [ ] Fix Errors (Debug)
 - [ ] **Part 16**
