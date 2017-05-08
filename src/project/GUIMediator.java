@@ -134,7 +134,7 @@ public class GUIMediator extends Observable {
 						"Run time error", JOptionPane.OK_OPTION);
 			} catch(DivideByZeroException e) {
 				JOptionPane.showMessageDialog(frame,
-						"Divide by serp from " + model.getpCounter() + "\n"
+						"Divide by zero from " + model.getpCounter() + "\n"
 						+ "Exception message: " + e.getMessage(),
 						"Rune time error", JOptionPane.OK_OPTION);
 			}
