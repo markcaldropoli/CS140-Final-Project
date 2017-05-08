@@ -80,6 +80,12 @@ public class Assembler2 {
 				}
 			}
 			
+			if(!InstructionMap.opcode.containsKey(parts[0]) && 
+					!InstructionMap.opcode.containsKey(parts[0].toUpperCase())) {
+				errors.add("Error: line "+i+" has an illegal mnemonic: " + parts[0]);
+			}
+				
+			
 			if(!InstructionMap.noArgument.contains(parts[0])) {
 				if(parts.length == 1) {
 					errors.add("Error: line "+i+" is missing an argument");
@@ -105,10 +111,8 @@ public class Assembler2 {
 					}
 				}
 
-				@SuppressWarnings("unused")
-				int arg = 0;
 				try {
-					arg = Integer.parseInt(parts[1],16);
+					Integer.parseInt(parts[1],16);
 				} catch(NumberFormatException e) {
 					errors.add("Error: line "+i+" does not have a numeric argument");
 				}
@@ -134,11 +138,15 @@ public class Assembler2 {
 		for(int i=1; i<=data.size(); i++) {
 			String line = data.get(i-1);
 			String[] parts = line.trim().split("\\s+");
-			try {
-				Integer.parseInt(parts[1],16);
-				Integer.parseInt(parts[0],16);
-			} catch (NumberFormatException e) {
-				errors.add("Error: line "+(code.size()+1+i)+" data address is not a hex number");
+			if(parts.length == 2) {
+				try {
+					Integer.parseInt(parts[1],16);
+					Integer.parseInt(parts[0],16);
+				} catch (NumberFormatException e) {
+					errors.add("Error: line "+(code.size()+1+i)+" data address is not a hex number");
+				}
+			} else {
+				errors.add("Error line "+(code.size()+1+i)+" does not have a numeric argument");
 			}
 		}
 		
