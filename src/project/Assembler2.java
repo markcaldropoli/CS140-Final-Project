@@ -101,9 +101,11 @@ public class Assembler2 {
 				if(parts[1].startsWith("[")) {
 					if(!InstructionMap.indirectOK.contains(parts[0])) {
 						errors.add("Error: line "+(i+1)+" does not have indirect instruction");
+						continue;
 					} else {
 						if(parts[1].lastIndexOf("]") != parts[1].length()-1) {
 							errors.add("Error: line "+(i+1)+" does not have a closing bracket");
+							continue;
 						} else {
 							parts[1] = parts[1].substring(1, parts[1].length() - 1);
 							indirLvl = 2;
@@ -115,6 +117,7 @@ public class Assembler2 {
 					Integer.parseInt(parts[1],16);
 				} catch(NumberFormatException e) {
 					errors.add("Error: line "+(i+1)+" does not have a numeric argument");
+					continue;
 				}
 			}
 
