@@ -137,15 +137,14 @@ public class FilesMgr {
 				} else {
 					Map<Integer, ArrayList<String>> errorMap = new TreeMap<>();
 					for (String err : errors) {
-						String part = err.replaceAll("[^\\d]",""); // remove anything that is not a digit
+						String part = err.replaceAll("^[^\\d]*(\\d+).*$", "$1");					
 						Integer k = Integer.parseInt(part);
-						if(!errorMap.containsKey(k)) {      // make sure there is a list in the map
-							errorMap.put(k, new ArrayList<>());
-						}
-						errorMap.get(k).add(err);           // store the error
+						if(!errorMap.containsKey(k)) 
+							errorMap.put(Integer.parseInt(part), new ArrayList<>());							
+						errorMap.get(k).add(err);
 					}
 					StringBuilder sb = new StringBuilder();
-					for(Integer key : errorMap.keySet()) {  // the keys will be in increasing order
+					for(Integer key : errorMap.keySet()) {
 						ArrayList<String> list = errorMap.get(key);
 						for(String s : list) {
 							sb.append(s);
