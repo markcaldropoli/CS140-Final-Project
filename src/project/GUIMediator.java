@@ -115,7 +115,7 @@ public class GUIMediator extends Observable {
 				JOptionPane.showMessageDialog(
 						frame,
 						"Illegal access to code from " + model.getpCounter() + "\n"
-						 + "Exception message: " + e.getMessage(),
+						 + "Exception message: Illegal access outside of executing code",
 						 "Run time error", JOptionPane.OK_OPTION);
 			} catch(ArrayIndexOutOfBoundsException e) {
 				JOptionPane.showMessageDialog(frame,
@@ -152,7 +152,7 @@ public class GUIMediator extends Observable {
 				JOptionPane.showMessageDialog(
 						frame,
 						"Illegal access to code from " + model.getpCounter() + "\n"
-						 + "Exception message: " + e.getMessage(),
+						 + "Exception message:  Illegal access outside of executing code",
 						 "Run time error", JOptionPane.OK_OPTION);
 			} catch(ArrayIndexOutOfBoundsException e) {
 				JOptionPane.showMessageDialog(frame,
@@ -171,7 +171,7 @@ public class GUIMediator extends Observable {
 						"Run time error", JOptionPane.OK_OPTION);
 			} catch(DivideByZeroException e) {
 				JOptionPane.showMessageDialog(frame,
-						"Divide by serp from " + model.getpCounter() + "\n"
+						"Divide by zero from " + model.getpCounter() + "\n"
 						+ "Exception message: " + e.getMessage(),
 						"Rune time error", JOptionPane.OK_OPTION);
 			}
