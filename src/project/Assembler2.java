@@ -151,7 +151,7 @@ public class Assembler2 {
 					errors.add("Error: line "+(code.size()+1+i)+" data address is not a hex number");
 				}
 			} else {
-				errors.add("Error line "+(code.size()+1+i)+" does not have a numeric argument");
+				errors.add("Error: line "+(code.size()+1+i)+" does not have a numeric argument");
 			}
 		}
 		
