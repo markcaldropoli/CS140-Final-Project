@@ -66,30 +66,24 @@ public class Assembler2 {
 			String[] parts = line.trim().split("\\s+");
 
 			if (!InstructionMap.sourceCodes.contains(parts[0])) {
-				errors.add("Error: line " + (i+1) + " does not contain a valid instruction");
+				errors.add("Error: line "+(i+1)+" does not contain a valid instruction");
 				return;
 			}
 			
 			if(InstructionMap.sourceCodes.contains(parts[0].toUpperCase()) &&
 					!InstructionMap.sourceCodes.contains(parts[0])) {
-				errors.add("Error: line "+(i+1)+" does not have the instruction mnemonic in upper case");
+				errors.add("Error: line "+(i+1)+" does not have the instruction mnemonic in uppercase");
 			} else if(InstructionMap.noArgument.contains(parts[0])) {
 				if(parts.length != 1) {
 					errors.add("Error: line "+(i+1)+" has an illegal argument");
 				}
 			}
 			
-			if(!InstructionMap.opcode.containsKey(parts[0]) && 
-					!InstructionMap.opcode.containsKey(parts[0].toUpperCase())) {
-				errors.add("Error: line "+(i+1)+" has an illegal mnemonic: " + parts[0]);
-			}
-				
-			
 			if(!InstructionMap.noArgument.contains(parts[0])) {
 				if(parts.length == 1) {
 					errors.add("Error: line "+(i+1)+" is missing an argument");
 				}
-				if(parts.length > 3) {
+				if(parts.length >= 3) {
 					errors.add("Error: line "+(i+1)+" has more than one argument");
 				}
 			}
@@ -115,6 +109,11 @@ public class Assembler2 {
 				} catch(NumberFormatException e) {
 					errors.add("Error: line "+(i+1)+" does not have a numeric argument");
 				}
+			}
+			
+			if(!InstructionMap.opcode.containsKey(parts[0]) && 
+					!InstructionMap.opcode.containsKey(parts[0].toUpperCase())) {
+				errors.add("Error: line "+(i+1)+" has an illegal mnemonic: " + parts[0]);
 			}
 
 			if (parts[0].endsWith("I")) {
