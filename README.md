@@ -71,29 +71,28 @@
   - [x] Test 09 (Debug)
   - [x] Test 10 (Debug)
   - [x] Test 11 (Debug)
-  - [ ] Test 12 (Debug)
+  - [x] Test 12 (Debug)
   - [x] Test 13 (Debug)
   - [x] Test 14 (Debug)
-  - [ ] Test 15 (Debug)
+  - [x] Test 15 (Debug)
   - [x] Test 16 (Debug)
-  - [ ] Test 17 (Debug)
-  - [ ] Test 18 (Debug)
-  - [ ] Test 19 (Debug)
-  - [ ] Test 20 (Debug)
-  - [ ] Test 21 (Debug)
-  - [ ] Test 22 (Debug)
-  - [ ] Test 23 (Debug)
-  - [ ] Test 24 (Debug)
-  - [ ] Test 25 (Debug)
-  - [ ] Test 100 (Debug)
-  - [ ] Test 101 (Debug)
-  - [ ] Test 102 (Debug)
-  - [ ] Test 103 (Debug)
-  - [ ] Test 104 (Debug)
-  - [ ] Factorial Test
-  - [ ] Factorial Indirect Test
-  - [ ] Merge Test
-  - [ ] Qsort Test
+  - [x] Test 17 (Debug)
+  - [x] Test 18 (Debug)
+  - [x] Test 19 (Debug)
+  - [x] Test 20 (Debug)
+  - [x] Test 21 (Debug)
+  - [x] Test 22 (Debug)
+  - [x] Test 23 (Debug)
+  - [x] Test 24 (Debug)
+  - [x] Test 25 (Debug)
+  - [x] Test 100 (Debug)
+  - [x] Test 101 (Debug)
+  - [x] Test 102 (Debug)
+  - [x] Test 103 (Debug)
+  - [x] Test 104 (Debug)
+  - [x] Factorial Test
+  - [x] Factorial Indirect Test
+  - [x] Merge Test
+  - [x] Qsort Test
 - [ ] **Part 16**
-  - [ ] Assembler2 - Refer to Part 3 (Class Update)
   - *TBD - Anything Missing*
