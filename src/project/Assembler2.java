@@ -24,15 +24,14 @@ public class Assembler2 {
 				if(!line.trim().isEmpty() && (line.charAt(0) == ' ' || line.charAt(0) == '\t')) {
 					errors.add("Error: line "+(i+1)+" starts with white space");
 				}
-				if(!dataSeparator) {
-					if(line.trim().toUpperCase().startsWith("--")) {
-						if(line.trim().replace("-", "").length() != 0) {
-							errors.add("Error: line "+(i+1)+" has a badly formatted data separator");
-						}
-						dataSeparator = true;
+				if(line.trim().toUpperCase().startsWith("--")) {
+					if(dataSeparator) {
+						errors.add("Error: line "+(i+1)+" has a duplicate data separator");
 					}
-				} else if (dataSeparator && line.trim().toUpperCase().startsWith("--")) {
-					errors.add("Error: line "+(i+1)+" has a duplicate data separator");
+					if(line.trim().replace("-", "").length() != 0) {
+						errors.add("Error: line "+(i+1)+" has a badly formatted data separator");
+					}
+					dataSeparator = true;
 				}
 			}
 			boolean inData = false;
