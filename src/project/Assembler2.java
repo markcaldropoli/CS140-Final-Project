@@ -16,23 +16,23 @@ public class Assembler2 {
 				inText.add(sc.nextLine());
 			}
 			boolean dataSeparator = false;
-			for(int i=1; i<=inText.size(); i++) {
-				String line = inText.get(i-1);
+			for(int i=0; i<inText.size(); i++) {
+				String line = inText.get(i);
 				if(line.trim().length() == 0 && i + 1 < inText.size() && inText.get(i+1).trim().length() > 0) {
-					errors.add("Error: line "+i+" is a blank line");
+					errors.add("Error: line "+(i+1)+" is a blank line");
 				}
 				if(!line.trim().isEmpty() && (line.charAt(0) == ' ' || line.charAt(0) == '\t')) {
-					errors.add("Error: line "+i+" starts with white space");
+					errors.add("Error: line "+(i+1)+" starts with white space");
 				}
 				if(!dataSeparator) {
 					if(line.trim().toUpperCase().startsWith("--")) {
 						if(line.trim().replace("-", "").length() != 0) {
-							errors.add("Error: line "+i+" has a badly formatted data separator");
+							errors.add("Error: line "+(i+1)+" has a badly formatted data separator");
 						}
 						dataSeparator = true;
 					}
 				} else if (dataSeparator && line.trim().toUpperCase().startsWith("--")) {
-					errors.add("Error: line "+i+" has a duplicate data separator");
+					errors.add("Error: line "+(i+1)+" has a duplicate data separator");
 				}
 			}
 			boolean inData = false;
@@ -57,8 +57,8 @@ public class Assembler2 {
 
 		ArrayList<String> outText = new ArrayList<>();
 		System.out.println("Code size: " + code.size());
-		for(int i=1; i<=code.size(); i++) {
-			String line = code.get(i-1);
+		for(int i=0; i<code.size(); i++) {
+			String line = code.get(i);
 
 			if (line.trim().isEmpty()) {
 				continue;
@@ -67,31 +67,31 @@ public class Assembler2 {
 			String[] parts = line.trim().split("\\s+");
 
 			if (!InstructionMap.sourceCodes.contains(parts[0])) {
-				errors.add("Error: line " + i + " does not contain a valid instruction");
+				errors.add("Error: line " + (i+1) + " does not contain a valid instruction");
 				return;
 			}
 			
 			if(InstructionMap.sourceCodes.contains(parts[0].toUpperCase()) &&
 					!InstructionMap.sourceCodes.contains(parts[0])) {
-				errors.add("Error: line "+i+" does not have the instruction mnemonic in upper case");
+				errors.add("Error: line "+(i+1)+" does not have the instruction mnemonic in upper case");
 			} else if(InstructionMap.noArgument.contains(parts[0])) {
 				if(parts.length != 1) {
-					errors.add("Error: line "+i+" has an illegal argument");
+					errors.add("Error: line "+(i+1)+" has an illegal argument");
 				}
 			}
 			
 			if(!InstructionMap.opcode.containsKey(parts[0]) && 
 					!InstructionMap.opcode.containsKey(parts[0].toUpperCase())) {
-				errors.add("Error: line "+i+" has an illegal mnemonic: " + parts[0]);
+				errors.add("Error: line "+(i+1)+" has an illegal mnemonic: " + parts[0]);
 			}
 				
 			
 			if(!InstructionMap.noArgument.contains(parts[0])) {
 				if(parts.length == 1) {
-					errors.add("Error: line "+i+" is missing an argument");
+					errors.add("Error: line "+(i+1)+" is missing an argument");
 				}
 				if(parts.length > 3) {
-					errors.add("Error: line "+i+" has more than one argument");
+					errors.add("Error: line "+(i+1)+" has more than one argument");
 				}
 			}
 			
@@ -100,10 +100,10 @@ public class Assembler2 {
 			if(parts.length == 2) {
 				if(parts[1].startsWith("[")) {
 					if(!InstructionMap.indirectOK.contains(parts[0])) {
-						errors.add("Error: line "+i+" does not have indirect instruction");
+						errors.add("Error: line "+(i+1)+" does not have indirect instruction");
 					} else {
 						if(parts[1].lastIndexOf("]") != parts[1].length()-1) {
-							errors.add("Error: line "+i+" does not have a closing bracket");
+							errors.add("Error: line "+(i+1)+" does not have a closing bracket");
 						} else {
 							parts[1] = parts[1].substring(1, parts[1].length() - 1);
 							indirLvl = 2;
@@ -114,7 +114,7 @@ public class Assembler2 {
 				try {
 					Integer.parseInt(parts[1],16);
 				} catch(NumberFormatException e) {
-					errors.add("Error: line "+i+" does not have a numeric argument");
+					errors.add("Error: line "+(i+1)+" does not have a numeric argument");
 				}
 			}
 
@@ -138,6 +138,11 @@ public class Assembler2 {
 		for(int i=1; i<=data.size(); i++) {
 			String line = data.get(i-1);
 			String[] parts = line.trim().split("\\s+");
+
+			if (line.trim().isEmpty()) {
+				continue;
+			}
+
 			if(parts.length == 2) {
 				try {
 					Integer.parseInt(parts[1],16);
