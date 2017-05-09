@@ -37,9 +37,9 @@ public class Code {
 		return (int)(code[i] & 0x00000000FFFFFFFFL);
 	}
 	
-	public void clear(int start, int length) {
-		for(int i=start; i<start+length-1; i++) {
-			code[i] = 0;
+	public void clear(int start, int end) {
+		for(int i = start; i < end; i++) {
+		code[i] = 0L;
 		}
 	}
 	
