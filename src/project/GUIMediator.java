@@ -218,14 +218,8 @@ public class GUIMediator extends Observable {
 		center.add(memoryViewPanel2.createMemoryDisplay());
 		center.add(memoryViewPanel3.createMemoryDisplay());
 		frame.add(center, BorderLayout.CENTER);
-
 		frame.add(controlPanel.createControlDisplay(), BorderLayout.PAGE_END);
-		//Return here for the other GUI components
-		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//Return here for other setup details
-
 		frame.setVisible(true);
-
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.addWindowListener(WindowListenerFactory.windowClosingFactory(e -> exit()));
 		frame.setLocationRelativeTo(null);
