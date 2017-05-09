@@ -7,7 +7,7 @@ public class Job {
 	private int startmemoryIndex;
 	private int currentPC;
 	private int currentAcc;
-	private States currentState;
+	private States currentState = States.NOTHING_LOADED;
 	
 	public int getId() {
 		return id;

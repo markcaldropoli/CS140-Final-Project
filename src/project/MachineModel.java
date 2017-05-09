@@ -15,6 +15,19 @@ public class MachineModel {
 	public MachineModel(HaltCallback callback) {
 		this.callback = callback;
 		
+		for(int i=0; i<4; i++) {
+			jobs[i] = new Job();
+		}
+		currentJob = jobs[0];
+		for(int i=0; i<4; i++) {
+			jobs[i] = new Job();
+			jobs[i].setId(i);
+			jobs[i].setStartcodeIndex(i*Code.CODE_MAX/4);
+			jobs[i].setStartmemoryIndex(i*Memory.DATA_SIZE/4);
+			jobs[i].getCurrentState().enter();
+		}
+		jobs[0] = currentJob;
+		
 		//INSTRUCTION MAP entry for "NOP"
 		IMAP.put(0x0, (arg, level) -> cpu.incrPC());
 		
@@ -200,17 +213,6 @@ public class MachineModel {
 		
 		//INSTRUCTION MAP entry for "HALT"
 		IMAP.put(0xF, (arg, level) -> callback.halt());
-		
-		for(int i=0; i<4; i++) {
-			jobs[i] = new Job();
-		}
-		currentJob = jobs[0];
-		for(int i=0; i<4; i++) {
-			jobs[i].setId(i);
-			jobs[i].setStartcodeIndex(i*Code.CODE_MAX/4);
-			jobs[i].setStartmemoryIndex(i*Memory.DATA_SIZE/4);
-		}
-		jobs[0] = currentJob;
 	}
 	
 	public MachineModel() {

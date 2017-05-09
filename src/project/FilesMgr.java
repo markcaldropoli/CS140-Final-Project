@@ -19,17 +19,17 @@ public class FilesMgr {
 	private String executableDir; //Stored directory for pexe assembled files
 	private Properties properties = null;
 	private File currentlyExecutingFile = null; //Java method for persistent properties
-	
+
 	public FilesMgr(GUIMediator gui) {
 		this.gui = gui;
 		model = gui.getModel();
 	}
-	
+
 	public void initialize() {
 		locateDefaultDirectory();
 		loadPropertiesFile();
 	}
-	
+
 	private void locateDefaultDirectory() {
 		//Code to discover the Eclipse default directory
 		File temp = new File("propertyfile.txt");
@@ -51,7 +51,7 @@ public class FilesMgr {
 		int lastSlash = defaultDir.lastIndexOf('/');
 		defaultDir = defaultDir.substring(0, lastSlash+1);
 	}
-	
+
 	void loadPropertiesFile() {
 		try {
 			properties = new Properties();
@@ -71,7 +71,7 @@ public class FilesMgr {
 			executableDir = defaultDir;
 		}
 	}
-	
+
 	/**
 	 * Translate method reads a source "pasm" file and saves the
 	 * file with the extension "pexe" by collecting the input and output
@@ -101,8 +101,8 @@ public class FilesMgr {
 			sourceDir = sourceDir.substring(0, lastSlash + 1);
 			outName = outName.substring(lastSlash+1); 
 			filter = new FileNameExtensionFilter(
-				"Pippin Executable Files", "pexe");
-				if(executableDir.equals(defaultDir)) {
+					"Pippin Executable Files", "pexe");
+			if(executableDir.equals(defaultDir)) {
 				chooser = new JFileChooser(sourceDir);
 			} else {
 				chooser = new JFileChooser(executableDir);
@@ -174,7 +174,7 @@ public class FilesMgr {
 							JOptionPane.OK_OPTION);				
 		}
 	}
-	
+
 	public void loadFile(Job job) {
 		JFileChooser chooser = new JFileChooser(executableDir);
 		FileNameExtensionFilter filter = new FileNameExtensionFilter(
@@ -184,6 +184,9 @@ public class FilesMgr {
 		int openOK = chooser.showOpenDialog(null);
 		if(openOK == JFileChooser.APPROVE_OPTION) {
 			currentlyExecutingFile = chooser.getSelectedFile();
+		}
+		if(openOK == JFileChooser.CANCEL_OPTION) {
+			currentlyExecutingFile = null;
 		}
 		if(currentlyExecutingFile != null && currentlyExecutingFile.exists()) {
 			// CODE TO REMEMBER WHICH DIRECTORY HAS THE pexe FILES
@@ -200,9 +203,18 @@ public class FilesMgr {
 				System.out.println("Error writing properties file");
 			}			
 		}
-		finalLoad_ReloadStep(job);
+		if(currentlyExecutingFile != null) {
+			finalLoad_ReloadStep(job);
+		} else {
+			JOptionPane.showMessageDialog(
+					gui.getFrame(),  
+					"No file selected.\n" +
+							"Cannot load the program",
+							"Warning",
+							JOptionPane.OK_OPTION);
+		}
 	}
-	
+
 	void finalLoad_ReloadStep(Job job) {
 		gui.clearJob();
 		String str = Loader.load(model, currentlyExecutingFile, 
