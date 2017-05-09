@@ -56,7 +56,7 @@
   - [x] AccumulatorViewPanel (Class)
   - [x] ProcessorViewPanel (Class Update)
   - [x] GUIMediator (Class Update)
-- [ ] **Part 15**
+- [x] **Part 15**
   - [x] FilesMgr (Class Update)
   - [x] WindowListenerFactory (Class)
   - [x] GUIMediator (Class Update)
