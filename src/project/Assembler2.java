@@ -25,11 +25,12 @@ public class Assembler2 {
 					errors.add("Error: line "+(i+1)+" starts with white space");
 				}
 				if(line.trim().toUpperCase().startsWith("--")) {
-					if(dataSeparator) {
-						errors.add("Error: line "+(i+1)+" has a duplicate data separator");
-					}
 					if(line.trim().replace("-", "").length() != 0) {
 						errors.add("Error: line "+(i+1)+" has a badly formatted data separator");
+					} else {
+						if(dataSeparator) {
+							errors.add("Error: line "+(i+1)+" has a duplicate data separator");
+						}
 					}
 					dataSeparator = true;
 				}
@@ -55,7 +56,6 @@ public class Assembler2 {
 		}
 
 		ArrayList<String> outText = new ArrayList<>();
-		System.out.println("Code size: " + code.size());
 		for(int i=0; i<code.size(); i++) {
 			String line = code.get(i);
 
@@ -63,7 +63,6 @@ public class Assembler2 {
 				continue;
 			}
 
-			System.out.println(line);
 
 			String[] parts = line.trim().split("\\s+");
 
@@ -148,10 +147,16 @@ public class Assembler2 {
 
 			if(parts.length == 2) {
 				try {
-					Integer.parseInt(parts[1],16);
+
 					Integer.parseInt(parts[0],16);
 				} catch (NumberFormatException e) {
 					errors.add("Error: line "+(code.size()+1+i)+" data address is not a hex number");
+				}
+				try {
+
+					Integer.parseInt(parts[1],16);
+				} catch (NumberFormatException e) {
+					errors.add("Error: line "+(code.size()+1+i)+" data value is not a hex number");
 				}
 			} else {
 				errors.add("Error: line "+(code.size()+1+i)+" does not consist of two numbers");
@@ -169,11 +174,4 @@ public class Assembler2 {
 		}
 	}
 
-	public static void main(String[] args) {
-		ArrayList<String> errors = new ArrayList<>();
-		assemble(new File("in.pasm"), new File("out.pexe"), errors);
-		for (String error : errors) {
-			System.out.println(error);
-		}
-	}
 }
